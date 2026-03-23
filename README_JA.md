@@ -1,14 +1,14 @@
 # swagger-scraper [![CI](https://github.com/segurvita/swagger-scraper/actions/workflows/ci.yml/badge.svg)](https://github.com/segurvita/swagger-scraper/actions/workflows/ci.yml)
+
 <div style="text-align:right">Language: <a href="README.md">English</a> | <i>日本語</i></div>
+
+![hero](docs/images/hero.jpg)
+
 swaggerファイルを圧縮するnpmモジュールを作りました。 `scraper` というのは削り取るというニュアンスの言葉です。
-
-
 
 # 目的
 
 Amazon API GatewayにSwaggerファイルをインポートしたところ、容量制限のエラーが発生しました。このエラーを回避することが目的です。
-
-
 
 # 使用方法
 
@@ -24,24 +24,22 @@ npm install swagger-scraper
 
 ```javascript
 // ライブラリを追加
-const fs = require('fs');
-const scraper = require('swagger-scraper');
+const fs = require("fs");
+const scraper = require("swagger-scraper");
 
 // YAMLファイルを読み込み
-const inputSwagger = fs.readFileSync('./swagger.yaml', 'utf8');
+const inputSwagger = fs.readFileSync("./swagger.yaml", "utf8");
 
 // exampleを削除し、descriptionを空にし、deprecatedの親を削除する
 const outputSwagger = scraper(inputSwagger)
-  .deleteTarget('example')
-  .emptyTarget('description')
-  .deleteParent('deprecated')
+  .deleteTarget("example")
+  .emptyTarget("description")
+  .deleteParent("deprecated")
   .toString();
 
 // 結果を表示
 console.log(outputSwagger);
 ```
-
-
 
 # API
 
@@ -69,8 +67,6 @@ keyが `scrapTarget` のvalueを `''` に置換します。メソッドチェー
 
 現在の加工データをもとにYAML形式の文字列を生成し、返却します。
 
-
-
 # 開発環境構築
 
 本プロジェクトを編集した場合、リポジトリから本プロジェクトをクローンし、以下のコマンドで開発環境を構築できます。
@@ -82,4 +78,3 @@ npm install
 # テスト実行
 npm test
 ```
-
